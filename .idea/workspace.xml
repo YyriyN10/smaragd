@@ -19,32 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b715b307-866c-4b6b-b8c7-21aad719d22e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/assets/css/_header.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon-init.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon/blocks/about-project.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon/blocks/about-us.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon/blocks/building-progress.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon/blocks/building-types.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon/blocks/call-to-action.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon/blocks/gallery.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon/blocks/infrastructure.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon/blocks/life-space.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/carbon/blocks/location.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/template-parts/email.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/template-parts/form.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/template-parts/phone.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/template-parts/social.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/smaragd-town/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/smaragd-town/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/smaragd-town/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/smaragd-town/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/smaragd-town/inc/jetpack.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/smaragd-town/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/smaragd-town/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/smaragd-town/page.php" afterDir="false" />
-    </list>
+    <list default="true" id="b715b307-866c-4b6b-b8c7-21aad719d22e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +50,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../greensystem.loc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
@@ -100,6 +75,7 @@
       <workItem from="1747721353237" duration="1057000" />
       <workItem from="1747752915668" duration="359000" />
       <workItem from="1747807787080" duration="18748000" />
+      <workItem from="1747834769800" duration="302000" />
     </task>
     <servers />
   </component>
