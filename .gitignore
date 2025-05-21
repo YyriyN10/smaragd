@@ -10,9 +10,9 @@
 /wp-content/languages
 /wp-content/plugins/index.php
 /wp-content/themes/index.php
-/wp-content/themes/smaragdtown/assets/node_modules
-/wp-content/themes/smaragdtown/assets/img/load/
-/wp-content/themes/smaragdtown/vendor
+/wp-content/themes/smaragd-town/assets/node_modules
+/wp-content/themes/smaragd-town/assets/img/load/
+/wp-content/themes/smaragd-town/vendor
 /wp-includes/
 /index.php
 /license.txt
