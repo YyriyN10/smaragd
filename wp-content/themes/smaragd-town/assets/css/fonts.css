@@ -1,12 +1,50 @@
+
+
 @font-face {
-  font-family: "HarmoniaSansProCyr-Black";
-  src: url("../fonts/HarmoniaSansProCyr-Black/HarmoniaSansProCyr-Black.eot");
-  src: url("../fonts/HarmoniaSansProCyr-Black/HarmoniaSansProCyr-Black.eot?#iefix") format("embedded-opentype"),
-  url("../fonts/HarmoniaSansProCyr-Black/HarmoniaSansProCyr-Black.woff") format("woff"),
-  url("../fonts/HarmoniaSansProCyr-Black/HarmoniaSansProCyr-Black.ttf") format("truetype");
+  font-display: swap;
+  font-family: 'Geologica-Light';
   font-style: normal;
-  font-weight: normal;
-  font-display: swap; //обязательно
+  font-weight: 300;
+  src: url('../fonts/Geologica/geologica-300.woff2') format('woff2'),
+  url('../fonts/Geologica/geologica-300.ttf') format('truetype');
 }
+
+@font-face {
+  font-display: swap;
+  font-family: 'Geologica-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Geologica/geologica-regular.woff2') format('woff2'),
+  url('../fonts/Geologica/geologica-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Geologica-Medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/Geologica/geologica-500.woff2') format('woff2'),
+  url('../fonts/Geologica/geologica-500.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Geologica-Semi-Bold';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/Geologica/geologica-600.woff2') format('woff2'),
+  url('../fonts/Geologica/geologica-600.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Geologica-Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/Geologica/geologica-700.woff2') format('woff2'),
+  url('../fonts/Geologica/geologica-700.ttf') format('truetype');
+}
+
+
 
 

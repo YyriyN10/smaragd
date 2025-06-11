@@ -90,25 +90,33 @@
 										Field::make_text('email', 'Пошта')
 											->set_attribute('type', 'email')
 									)),
-								Field::make_separator('option_separator_3', 'Сторінки подяки'),
+								Field::make_separator('option_separator_3', 'Налштування для KeyCrm'),
+								Field::make_text('option_integration_key_crm_api_key', 'API KEY')
+									->set_width(50),
+								Field::make_text('option_integration_key_crm_source_id', 'ID джерела')
+									->set_width(50)
+									->set_attribute('type', 'number'),
+								Field::make_text('option_integration_key_crm_manager_id', 'ID менеджера')
+								     ->set_width(50)
+								     ->set_attribute('type', 'number'),
+								Field::make_select('option_integration_key_crm_lid_target', 'Де має створюватись заявка')
+									->set_width(50)
+									->add_options( array(
+										'/pipelines/cards' => 'Створення нової картки у воронці',
+										'/order' => 'Створення нового замовлення',
 
-								/*Field::make_complex('option_site_thx_pages_list', 'Cторінки подяки для різних мов')
-									->add_fields(array(
-										Field::make_select('lang', 'Мова сайту')
-											->set_width(50)
-											->set_required(true)
-											->add_options( 'lang_list' ),
-										Field::make_association('thx_page', 'Сторінка подяки')
-											->set_max(1)
-											->set_width(50)
-											->set_required(true)
-											->set_types( array(
-												array(
-													'type' => 'post',
-													'post_type' => 'page',
-												)
-											) )
-									))*/
+									) ),
+								Field::make_separator('option_separator_thx', 'Перенаправлення після відправки форми'),
+								Field::make_association('option_thx_page', 'Сторінка подяки')
+								     ->set_max(1)
+								     ->set_required(false)
+								     ->set_types( array(
+									     array(
+										     'type' => 'post',
+										     'post_type' => 'page',
+									     )
+								     ) ),
+
 							))
 		         ->add_tab('Футер', array(
 		         	  Field::make_text('option_site_footer_form_title', 'Заголовок форми'),
@@ -116,10 +124,12 @@
 			          Field::make_text('option_site_footer_form_btn_text', 'Текст кнопки'),
 			          Field::make_text('option_site_footer_contacts_title', 'Заголовок блоку контактів'),
 			          Field::make_text('option_site_footer_social_title', 'Заголовок блоку соціальних мереж'),
+			          Field::make_text('option_site_footer_sale_title', 'Заголовок блоку відділу продажів'),
 		         ))
 							->add_tab('Сторінка 404', array(
 								Field::make_text('option_site_404_title', 'Заголовок'),
 								Field::make_text('option_site_404_text', 'Текст'),
+
 								Field::make_image('option_site_404_image', 'Зображення')
 							))
 		         ->add_tab('Соціальні мережі', array(

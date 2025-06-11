@@ -97,29 +97,36 @@
 			             <div class="row">
 			               <?php if( $fields['block_list'] ):?>
 			                 <div class="slider-wrapper col-12">
-				                 <div class="slider" id="infrastructure-slider">
-					                 <?php foreach( $fields['block_list'] as $item):?>
-						                 <div class="slide">
-							                 <div class="pic-wrapper">
-								                 <img
-									                 src="<?php echo wp_get_attachment_image_src($item['image'], 'full')[0];?>"
-									                 <?php
-										                 $altText = get_post_meta($item['image'], '_wp_attachment_image_alt', TRUE);
-										                 if ( !empty( $altText ) ):?>
-											                 alt="<?php echo $altText;?>"
-										                 <?php else:?>
-											                 alt="<?php echo wp_strip_all_tags($item['name']);?>"
-										                 <?php endif;?>
+                         <!-- Slider main container -->
+                         <div class="swiper" id="infrastructure-slider">
+                           <!-- Additional required wrapper -->
+                           <div class="swiper-wrapper">
+                             <?php foreach( $fields['block_list'] as $item):?>
+                               <div class="swiper-slide">
+                                 <div class="pic-wrapper">
+                                   <img
+                                       src="<?php echo wp_get_attachment_image_src($item['image'], 'full')[0];?>"
+					                           <?php
+						                           $altText = get_post_meta($item['image'], '_wp_attachment_image_alt', TRUE);
+						                           if ( !empty( $altText ) ):?>
+                                         alt="<?php echo $altText;?>"
+						                           <?php else:?>
+                                         alt="<?php echo wp_strip_all_tags($item['name']);?>"
+						                           <?php endif;?>
 
-								                 >
-							                 </div>
-							                 <div class="info">
-								                 <p class="name"><?php echo str_replace(['<p>', '</p>'], '', $item['name'] );?></p>
-								                 <p class="description"><?php echo str_replace(['<p>', '</p>'], '', $item['description'] );?></p>
-							                 </div>
-						                 </div>
-					                 <?php endforeach;?>
-				                 </div>
+                                   >
+                                 </div>
+                                 <div class="info">
+                                   <p class="name"><?php echo str_replace(['<p>', '</p>'], '', $item['name'] );?></p>
+                                   <p class="description"><?php echo str_replace(['<p>', '</p>'], '', $item['description'] );?></p>
+                                 </div>
+                               </div>
+	                           <?php endforeach;?>
+                           </div>
+
+                           <!-- If we need scrollbar -->
+                           <div class="swiper-scrollbar"></div>
+                         </div>
 			                 </div>
 			               <?php endif;?>
 			             </div>

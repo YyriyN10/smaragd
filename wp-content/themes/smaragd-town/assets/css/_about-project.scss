@@ -1,0 +1,90 @@
+.about-project{
+  background-color: $color-white;
+
+  .video-preview{
+    position: relative;
+
+    @media(max-width: 992px){
+      order: 2;
+      padding-bottom: 56.25%;
+    }
+
+    .inner{
+      border-radius: 20px;
+      overflow: hidden;
+      position: absolute;
+      inset: 0 12px;
+
+      .object-fit{
+        position: relative;
+        z-index: 1;
+      }
+
+      .play{
+        border: none;
+        padding: 0;
+        position: absolute;
+        border-radius: 50%;
+        background-color: $color-orange;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 44px;
+        height: 44px;
+
+        svg{
+          width: 24px;
+        }
+      }
+    }
+  }
+
+  .text-content{
+    @media(max-width: 992px){
+      order: 1;
+      margin-bottom: 32px;
+    }
+    .block-title{
+      color: $color-green-dark;
+      margin-bottom: 8px;
+    }
+
+    .text{
+      margin-bottom: 24px;
+    }
+
+    .card-list-wrapper{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 0;
+
+      .card-item{
+        border-radius: 20px;
+        padding: 24px;
+        background-color: $color-white;
+        box-shadow: 0px 0px 0.5px 0px rgba(63, 63, 63, 0.10), 0px 5px 12px 0px rgba(63, 63, 63, 0.08), 0px 1px 3px 0px rgba(63, 63, 63, 0.08);
+        width: calc(50% - 12px);
+
+        @media(max-width: 440px){
+          width: 100%;
+          text-align: center;
+        }
+
+        .name{
+          margin-bottom: 8px;
+          color: $color-green-dark;
+        }
+
+        .description{
+          margin-bottom: 0;
+        }
+
+      }
+    }
+  }
+}

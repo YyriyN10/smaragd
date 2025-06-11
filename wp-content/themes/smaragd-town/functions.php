@@ -145,15 +145,19 @@ function smaragd_town_scripts() {
 	wp_enqueue_style( 'smaragd-town-style', get_stylesheet_uri(), array(), _S_VERSION );
 
 	wp_enqueue_style( 'fonts', get_template_directory_uri() . '/assets/css/fonts.css', array(), _S_VERSION);
+	wp_enqueue_style( 'swiper', get_template_directory_uri() . '/assets/css/swiper.css', array(), '11.2.8');
+	wp_enqueue_style( 'fancybox', get_template_directory_uri() . '/assets/css/jquery.fancybox.css', array(), '3.2.10');
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '5.3.3');
 	wp_enqueue_style( 'smaragd-town-style-main', get_template_directory_uri() . '/assets/css/style.min.css', array(), _S_VERSION);
 
-	wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.min.js', array('jqury'), '1.6.0', true );
+	wp_enqueue_script( 'swiper', get_template_directory_uri() . '/assets/js/swiper.js', array(), '11.2.8', true );
+	wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/slick.min.js', array(), '1.6.0', true );
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '5.3.3', true );
-	wp_enqueue_script( 'smaragd-town-style', get_template_directory_uri() . '/assets/js/main.min.js', array('jquery'), _S_VERSION, true );
+	wp_enqueue_script( 'smaragd-town-main-js', get_template_directory_uri() . '/assets/js/main.min.js', array('jquery'), _S_VERSION, true );
 
 }
 add_action( 'wp_enqueue_scripts', 'smaragd_town_scripts' );
+
 
 /**
  * Implement the Custom Header feature.
@@ -180,6 +184,58 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/carbon-init.php';
 
+/**
+ * Form integration
+ */
+require get_template_directory() . '/inc/form-integration.php';
+
+/**
+ * Add ajax
+ */
+add_action( 'wp_enqueue_scripts', 'yuna_ajax_data', 99 );
+function yuna_ajax_data(){
+
+	wp_localize_script('smaragd-town-main-js', 'yuna_ajax',
+		array(
+			'url' => admin_url('admin-ajax.php')
+		)
+	);
+
+}
+
+require get_template_directory() . '/inc/ajax-functions.php';
+
+/**
+ * Custom login page
+ */
+require get_template_directory() . '/inc/custom-login.php';
+
+add_filter('the_generator', '__return_null');
+
+	/**
+	 * Custom colors
+	 */
+
+	function custom_tinymce_colors($init) {
+		// Масив кольорів для палітри
+		$custom_colors = '  
+        "F9FCF5", "White",
+        "F9FCF5", "Black",
+        "034F43", "Dark green",
+        "02B513", "Green",
+        "F2682C", "Orange",
+    ';
+
+		// Додаємо кольори в налаштування TinyMCE
+		$init['textcolor_map'] = "[$custom_colors]";
+
+		// Включаємо палітру кольорів
+		$init['textcolor_rows'] = 7; // Кількість рядків у палітрі
+
+		return $init;
+	}
+
+	add_filter('tiny_mce_before_init', 'custom_tinymce_colors');
 
 
 

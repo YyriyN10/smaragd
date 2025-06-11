@@ -19,7 +19,8 @@ const sass = gulpSass(dartSass);*/
 }*/
 function scripts(){
   return src([//файли які потрібно об'єднати та зжати
-    'js/bootstrap.js',
+    'js/jquery.fancybox.min.js',
+    'js/jquery.maskedinput.min.js',
     'js/jquery.lazy.js',
     'js/js.js'//завжди останній, важлива послідовність
   ])

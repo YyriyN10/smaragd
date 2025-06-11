@@ -1,6 +1,17 @@
 jQuery(function($) {
 
   /**
+   * Lazy load
+   */
+  $('.lazy').lazy();
+
+  /**
+   * Phone mask
+   */
+
+  $("input[type=tel]").mask("+38(099) 999-99-99");
+
+  /**
    * Fixed Menu
    */
 
@@ -41,6 +52,197 @@ jQuery(function($) {
 
   });
 
+  /**
+   * Input focus animation
+   */
+
+  $('.form-group input').on('focus', function () {
+    $(this).closest('label').find('.label').addClass('active');
+  });
+
+  $('.form-group input').on('blur', function () {
+    $(this).closest('label').find('.label').removeClass('active');
+  });
+
+  /**
+   * Fancybox Init
+   */
+
+  $('[data-fancybox]').fancybox({
+    protect: true,
+    loop : true,
+    fullScreen : true,
+    scrolling : 'yes',
+    image : {
+      preload : "auto",
+      protect : true
+    },
+    buttons: [
+      "zoom",
+      "slideShow",
+      "fullScreen",
+      "close"
+    ]
+
+  });
+
+  /**
+   * Nav tabs
+   */
+
+  if ($('.nav-tabs').length){
+
+    $('.nav-tabs .nav-item:first-child .nav-link').addClass('active');
+
+    $('.tab-content .tab-pane:first-child').addClass('active');
+
+    /*$('.building-types .nav-tabs .nav-item:first-child .nav-link').addClass('active');
+    $('.building-types .tab-content .tab-pane:first-child').addClass('active');*/
+
+    $('.progress-position').each(function () {
+      let thisItem = $(this);
+      let thisProgress = thisItem.attr('data-progress');
+
+      thisItem.find('.progress-indicator').css('width', ''+thisProgress+'%');
+    });
+
+    function turnGallery($galleryList){
+
+      let data = {
+        action: 'change_turn_gallery',
+        galleryList: $galleryList,
+      };
+
+      $.post( yuna_ajax.url, data, function(response) {
+
+        if($.trim(response) !== ''){
+
+          $('#building-progress').html(response);
+
+          $("#building-progress").slick('refresh');
+        }
+      });
+    }
+
+    $('.nav-tabs').each(function () {
+      let thisTabList = $(this);
+
+      let galleryList = thisTabList.find('.nav-item:first-child .nav-link').attr('data-gallery');
+
+      turnGallery(galleryList);
+
+    });
+
+    $('.building-progress .nav-link').on('click', function () {
+      let galleryList = $(this).attr('data-gallery');
+
+      turnGallery(galleryList);
+    });
+
+
+    $('#building-progress').slick({
+      autoplay: false,
+      autoplaySpeed: 5000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: true,
+      fade: true
+    });
+
+  }
+
+  /**
+   * Swiper
+   */
+
+  const swiperInfrastructure = new Swiper("#infrastructure-slider", {
+    slidesPerView: 4,
+    spaceBetween: 24,
+    scrollbar: {
+      el: ".swiper-scrollbar",
+      hide: true,
+    },
+  });
+
+
+  /**
+   * Form integratioin
+   */
+
+  let utmList = sessionStorage.getItem("utmList");
+
+    if ( utmList ){
+      storageUtm(utmList);
+    }else{
+      let currentUtmList = window.location.search.substring(1);
+
+      if ( currentUtmList != '' ){
+        sessionStorage.setItem("utmList", currentUtmList);
+
+        storageUtm(currentUtmList);
+      }
+    }
+
+    function storageUtm(utmList){
+
+      let utmArray = utmList.split('&');
+
+      function checkUtm(utmName) {
+        for (let i = 0; i < utmArray.length; i++) {
+          let pair = utmArray[i].split('=');
+          if (decodeURIComponent(pair[0]) == utmName) {
+            return decodeURIComponent(pair[1]);
+          }
+        }
+      }
+
+      let utm_source = checkUtm('utm_source') ? checkUtm('utm_source') : "";
+      let utm_medium = checkUtm('utm_medium') ? checkUtm('utm_medium') : "";
+      let utm_campaign = checkUtm('utm_campaign') ? checkUtm('utm_campaign') : "";
+      let utm_term = checkUtm('utm_term') ? checkUtm('utm_term') : "";
+      let utm_content = checkUtm('utm_content') ? checkUtm('utm_content') : "";
+
+
+      let forms = $('form');
+      $.each(forms, function (index, form) {
+        let thisForm = $(form);
+        thisForm.append('<input type="hidden" name="utm_source" value="' + utm_source + '">');
+        thisForm.append('<input type="hidden" name="utm_medium" value="' + utm_medium + '">');
+        thisForm.append('<input type="hidden" name="utm_campaign" value="' + utm_campaign + '">');
+        thisForm.append('<input type="hidden" name="utm_term" value="' + utm_term + '">');
+        thisForm.append('<input type="hidden" name="utm_content" value="' + utm_content + '">');
+
+        let thisPageUrl = thisForm.find('input[name = page-url]').val();
+        thisForm.find('input[name = page-url]').val(thisPageUrl + '?' + utmList);
+      });
+    }
+
+    $('form').on('submit', function (e) {
+      e.preventDefault();
+
+      const thisForm = $(this);
+      const formData = $(this).serialize();
+
+      /*let thxPage = atob(thisForm.find('input[name = thx-page]').val());*/
+
+      thisForm.find('.button').addClass('form-accepted');
+
+      sessionStorage.removeItem("utmList");
+
+      $.post( yuna_ajax.url, formData, function(response) {
+
+        console.log(response);
+
+        /*fbq("track","Lead");*/
+        /*window.location.href = thxPage;*/
+
+      });
+
+
+
+    })
+
 
   //Get Window Width, Height
 
@@ -52,45 +254,9 @@ jQuery(function($) {
     windHeig = jQuery(window).height();
   });*/
 
-  // Lazy load
-
-  /*jQuery('.lazy').lazy();*/
-
-  //Fixed Menu
-
-  /*jQuery(document).scroll(function() {
-
-    let y = jQuery(this).scrollTop();
-
-    if (y > 1) {
-      jQuery('header').addClass('fixed');
-    } else {
-      jQuery('header').removeClass('fixed');
-    }
-  });
-
-  let positionScrolHeader = jQuery(window).scrollTop();
-
-  jQuery(window).scroll(function() {
-
-    let scroll = jQuery(window).scrollTop();
-
-    if(scroll > positionScrolHeader) {
-
-      if ( jQuery('.main-nav.open-menu').length ){
-        jQuery('header').addClass('fixed-vis');
-      }else{
-        jQuery('header').removeClass('fixed-vis');
-      }
 
 
-    } else {
-      jQuery('header').addClass('fixed-vis');
 
-    }
-
-    positionScrolHeader = scroll;
-  });*/
 
   //Mob Menu
 
@@ -210,25 +376,7 @@ jQuery(function($) {
 
   }*/
 
-  //Fancybox Init
 
-  /*jQuery('[data-fancybox]').fancybox({
-    protect: true,
-    loop : true,
-    fullScreen : true,
-    scrolling : 'yes',
-    image : {
-      preload : "auto",
-      protect : true
-    },
-    buttons: [
-      "zoom",
-      "slideShow",
-      "fullScreen",
-      "close"
-    ]
-
-  });*/
 
   //Webinar Countdown Timer
 
@@ -363,9 +511,7 @@ jQuery(function($) {
         jQuery('.mein-slider').slick('slickNext');
     });*/
 
-    // PHONE MASK
 
-    /*jQuery("input[type=tel]").mask("+38(999) 999-99-99");*/
 
     // DTA VALUE REPLACE
 

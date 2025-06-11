@@ -47,16 +47,18 @@
 							     ->set_required(true)
 							     ->set_attribute('type', 'number')
 							     ->set_width(20),
+							Field::make_text('progress_now', 'Що робиться зараз')
+                ->set_required(true)
+                ->set_width(60),
 							Field::make_complex('inner_list', 'Що входить')
 								->set_required(true)
-								->set_width(60)
 								->add_fields(array(
-									Field::make_image('icon', 'Іконка')
-										->set_required(true),
 									Field::make_text('name', 'Назва')
-									     ->set_required(true),
+									     ->set_required(true)
+                      ->set_width(40),
 									Field::make_rich_text('text', 'Опис')
 									     ->set_required(true)
+                      ->set_width(60)
 									     ->set_rows(1)
 									     ->set_settings([
 										     'media_buttons' => false,
@@ -76,20 +78,27 @@
 				))
 			     ->add_tab('Опції', array(
 				     Field::make_select('block_option_indent_top', 'Розмір верхнього внутрішнього відступу')
+				          ->set_width(50)
 				          ->add_options( array(
 					          'indent-top-big' => 'Великий відступ',
+					          'indent-top-medium' => 'Середній відступ',
 					          'indent-top-small' => 'Малкнький відступ',
 				          ) ),
 				     Field::make_select('block_option_indent_bottom', 'Розмір нижнього внутрішнього відступу')
+				          ->set_width(50)
 				          ->add_options( array(
 					          'indent-bottom-big' => 'Великий відступ',
+					          'indent-bottom-medium' => 'Середній відступ',
 					          'indent-bottom-small' => 'Малкнький відступ',
 				          ) ),
+
 				     Field::make_color('block_options_bg_color', 'Колір тла блоку')
-				          ->set_palette( array( '#1201FF', '#F7F00F', '#F64B0A', '#F9F9F9', '#FFFDFC', '#1D1D1B', '#CFCFCF') ),
+				          ->set_width(50)
+				          ->set_palette( array( '#F9FCF5', '#F9FCF5', '#034F43', '#02B513', '#F2682C') ),
 
 				     Field::make_color('block_options_text_color', 'Колір тексту')
-				          ->set_palette( array( '#1201FF', '#F7F00F', '#F64B0A', '#F9F9F9', '#FFFDFC', '#1D1D1B', '#CFCFCF') ),
+				          ->set_width(50)
+				          ->set_palette( array( '#F9FCF5', '#F9FCF5', '#034F43', '#02B513', '#F2682C') ),
 
 				     Field::make_text('block_option_anchor_id', 'Якір блоку')
 				        ->set_help_text('Потрібен для посилання на цей блок на априклад якогось пункту меню чи кнопки. Може містити латинські літери, ціфри, тере та підкреслення. Має бути унікальним на одній сторінці. Не може містити пробілів')
@@ -115,76 +124,59 @@
 						     <?php endif;?>
 						     >
 				           <div class="container">
-				             <div class="row">
-				               <h2 class="block-title col-12">
-					               <?php echo str_replace(['<p>', '</p>'], '', $fields['title'] );?>
-				               </h2>
-					             <?php if( !empty($fields['text']) ):?>
-						             <p class="subtitle">
-							             <?php echo str_replace(['<p>', '</p>'], '', $fields['text'] );?>
-						             </p>
-					             <?php endif;?>
-				             </div>
-					           <?php if( !empty($fields['block_list']) ):?>
-						           <div class="row">
-												<?php foreach( $fields['block_list'] as $index=>$step ):?>
-													<ul class="nav nav-tabs">
-														<li class="nav-item">
-															<a class="nav-link" data-bs-toggle="tab" href="#step-<?php echo $index;?>">
-																<?php echo str_replace(['<p>', '</p>'], '', $step['step_name'] );?>
-															</a>
-														</li>
-													</ul>
-												<?php endforeach;?>
-												<?php foreach( $fields['block_list'] as $index=>$step ):?>
-													<div class="tab-content">
-														<div class="tab-pane fade" id="step-<?php echo $index;?>">
-															<div class="inner-content">
-																<div class="progres-bar-wrapper">
-																	<div class="progress-position" data-progress="<?php echo $step['step_progress'];?>"></div>
-																</div>
-																<?php if( !empty($step['inner_list']) ):?>
-																	<ul class="card-list-wrapper">
-																		<?php foreach( $fields['inner_list'] as $innerItem):?>
-																			<li class="card-item">
-																				<div class="icon-wrapper">
-																					<img src="<?php echo $innerItem['icon'];?>" alt="<?php echo wp_strip_all_tags($innerItem['name']);?>" class="svg-pic">
-																				</div>
-																				<p class="name"><?php echo str_replace(['<p>', '</p>'], '', $innerItem['name'] );?></p>
-																				<p class="description"><?php echo str_replace(['<p>', '</p>'], '', $innerItem['text'] );?></p>
-																			</li>
+                     <div class="row">
+                       <div class="slider-wrapper col-lg-6">
+                         <div class="slider" id="building-progress">
 
-																		<?php endforeach;?>
-																	</ul>
-																<?php endif;?>
-																<?php if( !empty($step['media_gallery']) ):?>
-																	<div class="media-gallery">
-																		<?php foreach( $step['media_gallery'] as $image ):?>
-																			<div class="slide">
-																				<img
-																				   src="<?php echo wp_get_attachment_image_src($image['id'], 'full')[0];?>"
-																				   <?php
-																				    $altText = get_post_meta($image['id'], '_wp_attachment_image_alt', TRUE);
-																				    if ( !empty( $altText ) ):?>
-																				        alt="<?php echo $altText;?>"
-																				    <?php else:?>
-																				        alt="<?php echo wp_strip_all_tags($step['step_name']);?>"
-																				    <?php endif;?>
+                         </div>
+                       </div>
+                       <div class="content col-lg-6">
+                         <h2 class="block-title">
+		                       <?php echo str_replace(['<p>', '</p>'], '', $fields['title'] );?>
+                         </h2>
+	                       <?php if( !empty($fields['text']) ):?>
+                           <p class="sub-title">
+			                       <?php echo str_replace(['<p>', '</p>'], '', $fields['text'] );?>
+                           </p>
+	                       <?php endif;?>
+	                       <?php if( !empty($fields['block_list']) ):?>
+                             <ul class="nav nav-tabs">
+                               <?php foreach( $fields['block_list'] as $index=>$step ):?>
+                                   <li class="nav-item">
+                                     <a class="nav-link tub-btn" data-gallery="<?php echo implode(",", $step['media_gallery']);?>" data-bs-toggle="tab" href="#step-<?php echo $index;?>">
+                                       <?php echo str_replace(['<p>', '</p>'], '', $step['step_name'] );?>
+                                     </a>
+                                   </li>
+                               <?php endforeach;?>
+                             </ul>
 
-																				>
-																			</div>
-																		<?php endforeach;?>
-																	</div>
-																<?php endif;?>
-															</div>
-														</div>
-
-													</div>
-												<?php endforeach;?>
-
-						           </div>
-					           <?php endif;?>
-
+                             <div class="tab-content">
+                             <?php foreach( $fields['block_list'] as $index=>$step ):?>
+                                 <div class="tab-pane" id="step-<?php echo $index;?>">
+                                   <div class="inner-content">
+                                     <div class="progress-bar-wrapper">
+                                       <p class="progress-now sub-title"><?php echo $step['progress_now'];?></p>
+                                       <div class="progress-position" data-progress="<?php echo $step['step_progress'];?>">
+                                         <p class="progress-indicator"><?php echo $step['step_progress'];?>%</p>
+                                       </div>
+                                     </div>
+                                     <?php if( !empty($step['inner_list']) ):?>
+                                       <ul class="card-list-wrapper">
+                                         <?php foreach( $step['inner_list'] as $innerItem):?>
+                                           <li class="card-item">
+                                             <p class="name card-title"><?php echo str_replace(['<p>', '</p>'], '', $innerItem['name'] );?></p>
+                                             <p class="description"><?php echo str_replace(['<p>', '</p>'], '', $innerItem['text'] );?></p>
+                                           </li>
+                                         <?php endforeach;?>
+                                       </ul>
+                                     <?php endif;?>
+                                   </div>
+                                 </div>
+		                          <?php endforeach;?>
+                             </div>
+	                       <?php endif;?>
+                       </div>
+                     </div>
 				           </div>
 				         </section>
 				     <?php endif;?>
